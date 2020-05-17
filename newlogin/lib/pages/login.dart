@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:newlogin/widgets/circle.dart';
 import 'package:newlogin/widgets/input_text.dart';
 
@@ -11,6 +12,18 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
+  }
+  _submit(){
+    _formKey.currentState.validate();
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -76,23 +89,40 @@ class _LoginPageState extends State<LoginPage> {
                             minWidth: 350
                           ),
                           child: Form(
+                            key: _formKey ,
                                                       child: Column(
                               children:<Widget>[
                                 InputText(
                                   label: 'EMAIL ADDRESSS',
+                                  inputType: TextInputType.emailAddress,
+                                  validator: (String text){
+                                    if(text.contains('@')){
+                                        return null;
+                                    }
+                                    
+                                    return 'Invalid Email';
+                                  }
                                 ),
                                 SizedBox(
                             height:30
                         ),
                                 InputText(
                                   label: 'PASSWORD',
+                                  isSecure: true,
+                                
+                                  validator: (String text){
+                                    if(text.isNotEmpty && text.length>5){
+                                      return null;
+                                    }
+                                    return 'Invalid Password';
+                                  },
                                 ),
                               ]
                             ),
                           )
                         ),
                         SizedBox(
-                          height:40
+                          height:50
                         ),
                         ConstrainedBox(
                           constraints: BoxConstraints(
@@ -110,7 +140,9 @@ class _LoginPageState extends State<LoginPage> {
                               fontSize:20
                             ),
                           ),
-                            onPressed: () {},
+                            onPressed: () {
+                              _submit();
+                            },
                           ),
                         ),
                         SizedBox(
@@ -133,6 +165,9 @@ class _LoginPageState extends State<LoginPage> {
                           ), onPressed: (){})
                           ],
                         ),
+                        SizedBox(
+                          height:size.height*0.08
+                        )
                       ],
                     ),
                   ]),
