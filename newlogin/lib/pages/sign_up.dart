@@ -4,14 +4,14 @@ import 'package:flutter/services.dart';
 import 'package:newlogin/widgets/circle.dart';
 import 'package:newlogin/widgets/input_text.dart';
 
-class LoginPage extends StatefulWidget {
-  LoginPage({Key key}) : super(key: key);
+class SignUpPage extends StatefulWidget {
+  SignUpPage({Key key}) : super(key: key);
 
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _SignUpPageState createState() => _SignUpPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignUpPageState extends State<SignUpPage> {
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -157,17 +157,12 @@ class _LoginPageState extends State<LoginPage> {
                               color: Colors.black54
                             ),
                           ), 
-                          CupertinoButton(
-                            onPressed: (){
-                            Navigator.pushNamed(context, "signUp");
-                          },
-                            child: Text('Sign Up',
+                          CupertinoButton(child: Text('Sign Up',
                             style: TextStyle(
                               fontSize:16,
                               color:Colors.pinkAccent
                             ),
-                          ), 
-                          )
+                          ), onPressed: (){})
                           ],
                         ),
                         SizedBox(
