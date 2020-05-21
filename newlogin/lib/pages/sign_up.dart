@@ -72,7 +72,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   BoxShadow(color: Colors.black26, blurRadius: 25)
                                 ])),
                         SizedBox(
-                          height: 30,
+                          height: 10,
                         ),
                         Text('Hello again.\ Welcome',
                             textAlign: TextAlign.center,
@@ -103,7 +103,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                     return 'Invalid UserName';
                                   }
                                 ),
-                                SizedBox(height:20),
+                                SizedBox(height:15),
                                 InputText(
                                   label: 'EMAIL ADDRESSS',
                                   inputType: TextInputType.emailAddress,
@@ -134,7 +134,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           )
                         ),
                         SizedBox(
-                          height:50
+                          height:30
                         ),
                         ConstrainedBox(
                           constraints: BoxConstraints(
@@ -158,28 +158,28 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                         ),
                         SizedBox(
-                          height: 20,
+                          height: 10,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                           Text('New to Friendly Easy?',
+                           Text('Already have an Account?',
                             style: TextStyle(
                               fontSize:16,
                               color: Colors.black54
                             ),
                           ), 
-                          CupertinoButton(child: Text('Sign Up',
+                          CupertinoButton(child: Text('Sign In',
                             style: TextStyle(
                               fontSize:16,
                               color:Colors.pinkAccent
                             ),
-                          ), onPressed: ()=> Navigator.pushNamed(context, "signUp")
+                          ), onPressed: ()=> Navigator.pop(context)
                           )
                           ],
                         ),
                         SizedBox(
-                          height:size.height*0.08
+                          height:size.height*0.05
                         )
                       ],
                     ),
