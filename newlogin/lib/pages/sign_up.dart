@@ -36,7 +36,8 @@ class _SignUpPageState extends State<SignUpPage> {
               child: Container(
           width: size.width,
           height: size.height,
-          child: Stack(children: <Widget>[
+          child: Stack(
+            children: <Widget>[
             Positioned(
                 right: -size.width * 0.25,
                 top: -size.width * 0.36,
@@ -73,7 +74,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         SizedBox(
                           height: 30,
                         ),
-                        Text('Hello again.\ Welcome Back',
+                        Text('Hello again.\ Welcome',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 18,
@@ -93,6 +94,17 @@ class _SignUpPageState extends State<SignUpPage> {
                                                       child: Column(
                               children:<Widget>[
                                 InputText(
+                                  label: 'USERNAME',
+                                  validator: (String text){
+                                    if(RegExp(r'^[a-zA-Z0-9]').hasMatch(text)){
+                                        return null;
+                                    }
+                                    
+                                    return 'Invalid UserName';
+                                  }
+                                ),
+                                SizedBox(height:20),
+                                InputText(
                                   label: 'EMAIL ADDRESSS',
                                   inputType: TextInputType.emailAddress,
                                   validator: (String text){
@@ -104,7 +116,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   }
                                 ),
                                 SizedBox(
-                            height:30
+                            height:20
                         ),
                                 InputText(
                                   label: 'PASSWORD',
@@ -135,7 +147,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             ),
                             color: Colors.pinkAccent,
                             borderRadius: BorderRadius.circular(4),
-                            child: Text('Sign In',
+                            child: Text('Sign Up',
                             style: TextStyle(
                               fontSize:20
                             ),
@@ -162,7 +174,8 @@ class _SignUpPageState extends State<SignUpPage> {
                               fontSize:16,
                               color:Colors.pinkAccent
                             ),
-                          ), onPressed: (){})
+                          ), onPressed: ()=> Navigator.pushNamed(context, "signUp")
+                          )
                           ],
                         ),
                         SizedBox(
@@ -174,8 +187,23 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
               ),
             
-            )
-          ]),
+            ),
+            Positioned(
+              left:15,
+              top: 5,
+              child: SafeArea(
+                              child: CupertinoButton(
+                  padding: EdgeInsets.all(10),
+                  borderRadius: BorderRadius.circular(30),
+                  color: Colors.black12,
+                  child: Icon(Icons.arrow_back, color:Colors.white), 
+                  onPressed: ()=>Navigator.pop(context),
+
+                  ),
+              ),
+                ),
+          ]
+          ),
         ),
       ),
     );
